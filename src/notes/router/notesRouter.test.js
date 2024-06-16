@@ -1,6 +1,6 @@
 import testServer from "../../../test/testServer";
 import notes from "../data";
-import InMemoryNotesRepository from "../repository/InMemoryNotesRepository";
+import InMemoryNotesRepository from "../repositories/InMemoryNotesRepository";
 import notesRouterIoC from "./notesRouter";
 
 jest.mock("../utils/generateUUID.js", () => {
