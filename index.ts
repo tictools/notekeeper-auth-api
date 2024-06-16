@@ -1,7 +1,7 @@
 import cors from "cors";
 import express from "express";
 
-import { healthRouterIoC } from "@health/router";
+import { healthRouterIoC } from "src/health/router";
 import InMemoryNotesRepository from "src/notes/repository/InMemoryNotesRepository";
 import notesRouterIoC from "src/notes/router/notesRouter";
 
