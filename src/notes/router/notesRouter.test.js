@@ -1,6 +1,6 @@
 import testServer from "../../../test/testServer";
 import notes from "../data";
-import NotesInMemoryRepository from "../repository/NotesInMemoryRepository";
+import InMemoryNotesRepository from "../repository/InMemoryNotesRepository";
 import notesRouterIoC from "./notesRouter";
 
 jest.mock("../utils/generateUUID.js", () => {
@@ -12,7 +12,7 @@ jest.useFakeTimers("modern");
 
 const MOCKS = {
   NOTE_ID: "mockedID-123",
-  DATE_NOW: 39600000
+  DATE_NOW: 39600000,
 };
 
 const invalidId = "456";
@@ -20,13 +20,13 @@ const invalidId = "456";
 const initialNote = notes[0];
 
 const initialNoteDTO = {
-  id: "123",
+  id: MOCKS.NOTE_ID,
   name: "Walk the dog",
   description: "Go to the park",
   important: false,
   status: "pending",
   dueDate: "5/1/2024",
-  createdAt: 1714552849902
+  createdAt: 1714552849902,
 };
 
 const newNote = {
@@ -34,17 +34,17 @@ const newNote = {
   description: "Washing machine is out of order",
   important: true,
   status: "pending",
-  dueDate: "1/1/2024"
+  dueDate: "1/1/2024",
 };
 
 const newNoteDTO = {
   ...newNote,
   id: MOCKS.NOTE_ID,
-  createdAt: MOCKS.DATE_NOW
+  createdAt: MOCKS.DATE_NOW,
 };
 
 const updatedNoteWithInvalidKey = {
-  foo: "foo"
+  foo: "foo",
 };
 
 const updatedNote = {
@@ -52,12 +52,12 @@ const updatedNote = {
   description: "updated description",
   important: true,
   status: "in progress",
-  dueDate: "12/12/2024"
+  dueDate: "12/12/2024",
 };
 
 const mockNotes = [initialNote];
 
-const notesRepository = NotesInMemoryRepository(mockNotes);
+const notesRepository = InMemoryNotesRepository(mockNotes);
 const notesRouter = testServer(notesRouterIoC, notesRepository);
 
 describe("notesRouter", () => {
@@ -65,11 +65,11 @@ describe("notesRouter", () => {
     OK: 200,
     CREATED: 201,
     BAD_REQUEST: 400,
-    NOT_FOUND: 404
+    NOT_FOUND: 404,
   };
 
   const EXPECTED_ERROR_MESSAGE = {
-    CREATED: "Missing data."
+    CREATED: "Missing data.",
   };
 
   const EXPECTED_RESPONSE_DTO = {
@@ -77,10 +77,10 @@ describe("notesRouter", () => {
     CREATED: newNoteDTO,
     UPDATED: {
       ...initialNoteDTO,
-      ...updatedNote
+      ...updatedNote,
     },
     DELETED: initialNoteDTO,
-    EMPTY: []
+    EMPTY: [],
   };
 
   beforeEach(() => {
@@ -113,7 +113,7 @@ describe("notesRouter", () => {
         description: newNote.description,
         important: newNote.important,
         status: newNote.status,
-        dueDate: newNote.dueDate
+        dueDate: newNote.dueDate,
       };
 
       const { status, body } = await notesRouter
@@ -129,7 +129,7 @@ describe("notesRouter", () => {
         name: newNote.name,
         important: newNote.important,
         status: newNote.status,
-        dueDate: newNote.dueDate
+        dueDate: newNote.dueDate,
       };
 
       const { status, body } = await notesRouter
@@ -145,7 +145,7 @@ describe("notesRouter", () => {
         name: newNote.name,
         description: newNote.description,
         important: newNote.important,
-        dueDate: newNote.dueDate
+        dueDate: newNote.dueDate,
       };
 
       const { status, body } = await notesRouter
@@ -161,7 +161,7 @@ describe("notesRouter", () => {
         name: newNote.name,
         description: newNote.description,
         important: newNote.important,
-        status: newNote.status
+        status: newNote.status,
       };
 
       const { status, body } = await notesRouter
@@ -179,7 +179,7 @@ describe("notesRouter", () => {
       expect(body).toEqual(EXPECTED_RESPONSE_DTO.CREATED);
 
       const {
-        body: { notes }
+        body: { notes },
       } = await notesRouter.get("/notes");
 
       expect(notes).toHaveLength(EXPECTED_RESPONSE_DTO.READ.length + 1);
@@ -191,7 +191,7 @@ describe("notesRouter", () => {
     test("When an updated note contains a non allowed property Then response should return status 400 with expected error message", async () => {
       const {
         status,
-        body: { error }
+        body: { error },
       } = await notesRouter
         .put(`/notes/${initialNoteDTO.id}`)
         .send(updatedNoteWithInvalidKey);
@@ -203,7 +203,7 @@ describe("notesRouter", () => {
     test("When note id does note exist Then response should return status 404 with expected error message", async () => {
       const {
         status,
-        body: { error }
+        body: { error },
       } = await notesRouter.put(`/notes/${invalidId}`).send(updatedNote);
 
       expect(status).toBe(EXPECTED_STATUS.NOT_FOUND);
@@ -211,7 +211,7 @@ describe("notesRouter", () => {
     });
 
     test("When note id exists and keys are valid Then response should return updated note with status 200", async () => {
-      const validId = "123";
+      const validId = MOCKS.NOTE_ID;
 
       const { status, body } = await notesRouter
         .put(`/notes/${validId}`)
@@ -226,7 +226,7 @@ describe("notesRouter", () => {
     test("When note id does note exist Then response should return status 404 with expected error message", async () => {
       const {
         status,
-        body: { error }
+        body: { error },
       } = await notesRouter.delete(`/notes/${invalidId}`);
 
       expect(status).toBe(EXPECTED_STATUS.NOT_FOUND);
@@ -234,7 +234,7 @@ describe("notesRouter", () => {
     });
 
     test("When note id exists and keys are valid Then response should return updated note with status 200", async () => {
-      const validId = "123";
+      const validId = MOCKS.NOTE_ID;
 
       const { status, body } = await notesRouter.delete(`/notes/${validId}`);
 
@@ -242,7 +242,7 @@ describe("notesRouter", () => {
       expect(body).toEqual(EXPECTED_RESPONSE_DTO.DELETED);
 
       const {
-        body: { notes }
+        body: { notes },
       } = await notesRouter.get("/notes");
 
       expect(notes).toEqual(EXPECTED_RESPONSE_DTO.EMPTY);

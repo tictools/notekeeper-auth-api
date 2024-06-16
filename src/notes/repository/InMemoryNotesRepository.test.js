@@ -1,4 +1,4 @@
-import NotesInMemoryRepository from "./NotesInMemoryRepository";
+import InMemoryNotesRepository from "./InMemoryNotesRepository";
 
 const REPOSITORY_METHODS = [
   "getAllNotes",
@@ -7,7 +7,7 @@ const REPOSITORY_METHODS = [
   "updateNote",
   "removeNote",
   "findIndexNoteById",
-  "removeAllNotes"
+  "removeAllNotes",
 ];
 
 describe("NotesInMemoryRepository", () => {
@@ -18,7 +18,7 @@ describe("NotesInMemoryRepository", () => {
   const INDEX_COLLECTION = {
     NON_EXISTING: -1,
     FIRST: 0,
-    SECOND: 1
+    SECOND: 1,
   };
 
   const EXPECTED_RESULT = {
@@ -29,10 +29,10 @@ describe("NotesInMemoryRepository", () => {
     NULL: null,
     NOTE_ID_1: mockNote1._id,
     NOTE_ID_2: mockNote2._id,
-    NOTE_UPDATED_ID: mockUpdatedNote._id
+    NOTE_UPDATED_ID: mockUpdatedNote._id,
   };
 
-  const repository = NotesInMemoryRepository();
+  const repository = InMemoryNotesRepository();
 
   afterEach(() => {
     repository.removeAllNotes();
