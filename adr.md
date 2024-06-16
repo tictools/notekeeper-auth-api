@@ -231,3 +231,49 @@ try {
 
 > [!TIP]  
 > JWT official site and playground: https://jwt.io/
+
+## 4. STORING SESSION
+
+In Backend Engineering (BE), a session refers to a server-side storage (SSS) of user interactions that maintains state and context across multiple requests. It often includes an authentication scope, which means the session contains information about the user's identity, permissions, and authentication status, ensuring secure and personalized access to the application during the session's duration.
+
+---
+
+## Sources
+
+- **Desarrollando una API con Express desde cero** [ [midulive ↗](https://www.youtube.com/@midulive) ]
+
+  - Developing an API from scratch with Express and Node.js.
+  - link: https://youtu.be/YmZE1HXjpd4?si=0nWqs6mnIHSgS00h&t=2368 (how to create a native server and processing requests without Express)
+
+- **Aprende Autenticación de Usuario, Sesión, Cookies y JWT con Node.js** [ [midulive ↗](https://www.youtube.com/@midulive) ]
+
+  - Integrating authentication with JWT and cookies.
+    - express server
+    - middleware
+    - endpoints
+    - database management
+    - templates render
+    - Server Side Rendering
+    - creating protected route and session with JWT
+  - link: https://www.youtube.com/watch?v=UqnnhAZxRac&t=1614s
+
+- **Configura el linter ESLint y DEPLOY de tu API con Heroku 🚀 - Bootcamp FullStack JavaScript Gratuito** [ [midulive ↗](https://www.youtube.com/@midulive) ]
+
+  - 404 error handling with middleware: https://www.youtube.com/watch?v=ep_plUeKV1Y&t=775s
+  - link: https://www.youtube.com/watch?v=ep_plUeKV1Y
+
+- **Aprende Mongoose + conexión con Express + uso de Sentry 👮‍♂️ (Bootcamp FullStack JavaScript)** [ [midulive ↗](https://www.youtube.com/@midulive) ]
+
+  - error handling with middleware: https://www.youtube.com/watch?v=vhUw7GkRHdk&list=PLV8x_i1fqBw0Kn_fBIZTa3wS_VZAqddX7&index=9&t=2340s
+  - inteagratinf Sentry for error handling: https://www.youtube.com/watch?v=vhUw7GkRHdk&list=PLV8x_i1fqBw0Kn_fBIZTa3wS_VZAqddX7&index=9&t=3767s
+  - link: https://www.youtube.com/watch?v=vhUw7GkRHdk&list=PLV8x_i1fqBw0Kn_fBIZTa3wS_VZAqddX7&index=9
+
+- **Live coding: implementando auth con JWT en TypeScript** [ [The Refactor Project ↗](https://www.youtube.com/@RefactorProject/) ]
+
+  - User authentication in a REST API with TypeScript, using JSON Web Tokens (JWT).
+  - link: https://www.youtube.com/watch?v=A5fSdwf_TUk
+
+- **Live coding: implementando auth con JWT en TypeScript (2ª parte)** [ [The Refactor Project ↗](https://www.youtube.com/@RefactorProject/) ]
+
+  - Implementing user session on the FrontEnd with a React application.
+  - link: https://www.youtube.com/watch?v=A5fSdwf_TUk
