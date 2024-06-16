@@ -1,11 +1,11 @@
 import { generateUUID } from "src/notes/utils";
-import { type User } from "src/users/types";
+import { type UserAuth } from "src/users/types";
 
-export const users: User[] = [
+export const users: UserAuth[] = [
   {
+    _id: generateUUID(),
     username: "johnDoe_username",
-    email: "john@doe",
-    id: generateUUID(),
-    password: "123",
+    email: "john@mail.com",
+    password: "$2a$10$j32ZRodej1yUCurUQimQNuD8tTHO6UdgXxxvp6Vxmo/5saTYkzQjK",
   },
 ];
