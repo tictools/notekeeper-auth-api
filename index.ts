@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import { PORT } from "src/config";
 
 import { healthRouterIoC } from "src/health/router";
 import InMemoryNotesRepository from "src/notes/repository/InMemoryNotesRepository";
@@ -15,8 +16,6 @@ healthRouterIoC({ app });
 const inMemoryNotesRepository = InMemoryNotesRepository();
 
 notesRouterIoC(app, inMemoryNotesRepository);
-
-const PORT = process.env.API_PORT ?? 3001;
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT} ...`);
