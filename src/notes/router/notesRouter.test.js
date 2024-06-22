@@ -3,15 +3,27 @@ import notes from "../data";
 import InMemoryNotesRepository from "../repositories/InMemoryNotesRepository";
 import notesRouterIoC from "./notesRouter";
 
-jest.mock("../utils/generateUUID.js", () => {
-  const noteId = "mockedID-123";
-  return jest.fn().mockReturnValue(noteId);
+const mockUUID = "mock_b06-9edf-4af8-9c3c-34ab95a098bf";
+
+jest.mock("../../shared/utils", () => {
+  const mockUUID = "mock_b06-9edf-4af8-9c3c-34ab95a098bf";
+
+  const originalModule =
+    jest.requireActual <
+    typeof import("../../shared/utils") >
+    "../../shared/utils";
+
+  return {
+    __esModule: true,
+    ...originalModule,
+    generateUUID: jest.fn(() => mockUUID),
+  };
 });
 
 jest.useFakeTimers("modern");
 
 const MOCKS = {
-  NOTE_ID: "mockedID-123",
+  NOTE_ID: mockUUID,
   DATE_NOW: 39600000,
 };
 
@@ -94,6 +106,7 @@ describe("notesRouter", () => {
 
   afterAll(() => {
     jest.useRealTimers();
+    jest.resetAllMocks();
   });
 
   describe("Given GET action", () => {

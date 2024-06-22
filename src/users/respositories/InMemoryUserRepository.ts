@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-import { generateUUID } from "src/notes/utils";
+import { generateUUID } from "../../shared/utils";
 import { users } from "../data";
 import { UserRepository } from "../types";
 

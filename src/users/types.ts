@@ -1,6 +1,6 @@
 import { Request } from "express";
 
-export type uuid = `${string}-${string}-${string}-${string}-${string}`;
+export type UUID = `${string}-${string}-${string}-${string}-${string}`;
 
 export type User = {
   username: string;
@@ -12,7 +12,7 @@ export interface UserCredentials extends User {
 }
 
 export interface UserAuth extends UserCredentials {
-  _id: uuid;
+  _id: UUID;
 }
 
 export type UserDTO = Omit<UserCredentials, "password">;

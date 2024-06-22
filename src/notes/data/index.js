@@ -1,4 +1,4 @@
-import { generateUUID } from "../utils";
+import { generateUUID } from "../../shared/utils";
 
 const STATUS = {
   PENDING: "pending",

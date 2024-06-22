@@ -1,5 +1,5 @@
-import { generateUUID } from "src/notes/utils";
-import { type UserAuth } from "src/users/types";
+import { generateUUID } from "../../shared/utils";
+import { type UserAuth } from "../../users/types";
 
 export const users: UserAuth[] = [
   {

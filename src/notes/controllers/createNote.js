@@ -1,5 +1,6 @@
+import { generateUUID } from "../../shared/utils";
 import { noteMapper } from "../mappers/index.js";
-import { checkNoteDataIsIncomplete, generateUUID } from "../utils/index.js";
+import { checkNoteDataIsIncomplete } from "../utils/index.js";
 
 const createNote = (repository) => {
   return async (req, res) => {
@@ -14,7 +15,7 @@ const createNote = (repository) => {
     const newNote = {
       ...note,
       _id: generateUUID(),
-      created_at: Date.now()
+      created_at: Date.now(),
     };
 
     await repository.addNote(newNote);
